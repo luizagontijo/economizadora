@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economizadora</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        function mostraResultado() {  
+            var preco = document.getElementById('precoUsuario').value; 
+            var volume = document.getElementById('volumeUsuario').value; 
+            var calculo = 0;  
+
+            if(volume == 269){ 
+                nomeVolume = "Latinha 269ml";
+            }else if(volume == 300){
+                nomeVolume = "Barrigudinha 300ml";
+            }else if(volume == 330){
+                nomeVolume = "Long Neck 330ml";
+            }else if(volume == 350){
+                nomeVolume = "Lata 350ml";
+            }else if(volume == 355){
+                nomeVolume = "Long Neck 355ml";
+            }else if(volume == 473){
+                nomeVolume = "Latão 473ml";
+            }else if(volume == 550){
+                nomeVolume = "Big Latão 550ml";
+            }else if(volume == 600){
+                nomeVolume = "Garrafa 600ml";
+            }else if(volume == 1000){
+                nomeVolume = "Litrão 1l";
+            }
+
+            if(preco<=0 || isNaN(preco || volume=="")){ 
+                alert("Hey! Não vale digitar letras nem número menores que zero, tá? E você precisa escolher um tamanho de cerveja");
+                document.getElementById('resultado').innerHTML = (("Digite um número maior que zero e escolha sua cerveja").fontcolor('brown')) 
+            }else{ 
+                calculo = (preco * 1000 / volume).toFixed(2) //volume.ml?
+                document.getElementById('resultado').innerHTML = nomeVolume+" = "+calculo+" R$/litro" //volume.nome?
+                document.getElementById('resultado').style.fontSize = "1.6em"; 
+                document.getElementById('resultado').style.backgroundColor = "#d8e9dc"; 
+                document.getElementById('resultado').style.color = "black";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="site">
+        <header>
+            Cabeçalho
+        </header>
+
+        <main>
+            <h1>Economizadora de Cerveja</h1>
+            <div id=div1>                
+                <select id="volumeUsuario">
+                    <option value="" disabled selected>Selecione o tipo:</option> 
+                    <option class="tipo" value="269">Latinha 269ml</option> 
+                    <option class="tipo" value="300">Barrigudinha 300ml</option>
+                    <option class="tipo" value="330">Long Neck 330ml</option>
+                    <option class="tipo" value="350">Lata 350ml</option>
+                    <option class="tipo" value="355">Long Neck 355ml</option>
+                    <option class="tipo" value="473">Latão 473ml</option>
+                    <option class="tipo" value="550">Big Latão 550ml</option>
+                    <option class="tipo" value="600">Garrafa 600ml</option>
+                    <option class="tipo" value="1000">Litrão 1l</option>
+                </select>                     
+                    
+                <input type="text" id="precoUsuario" placeholder="digite o preço"></input>         
+            </div>            
+
+            <br/>
+            
+            <div id="div2">
+                <button type="button" id="botao" onclick="mostraResultado()" >Quanto dá?</button> <!--botão que puxa a função pra mostrar o resultado-->
+                <p><span id="resultado">Digite um preco e selecione as tipos nos campos acima.</span></p><!--a função troca o texto pelo preco definido por ela-->
+            </div>
+        </main>
+
+        <footer>
+            Rodapé
+        </footer>
+    </div>
+</body>
+</html>
